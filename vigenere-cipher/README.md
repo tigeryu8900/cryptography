@@ -1,4 +1,4 @@
-#Vigenere Cipher
+# Vigenere Cipher
 
 Implementation of the vigenere cipher and my attempt to crack it with a program.
 
