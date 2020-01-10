@@ -1,3 +1,3 @@
 # Cryptography
 
-a collection of projects related to cryptography
+a collection of projects on cryptography
