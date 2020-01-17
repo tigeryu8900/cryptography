@@ -6,8 +6,8 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Public/CLionProjects/vigenere-cipher/vigenere.cpp
-vector
+C:/Users/Public/CLionProjects/vigenere-cipher/main.cpp
+iostream
 -
 vigenere.h
 C:/Users/Public/CLionProjects/vigenere-cipher/vigenere.h
