@@ -6,7 +6,7 @@
 #include <array>
 #include <algorithm>
 #include <numeric>
-#include <iostream>
+//#include <iostream>
 #include "vigenere.h"
 #define MIN_KEY_LENGTH 2
 #define MAX_KEY_LENGTH 20
