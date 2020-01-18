@@ -41,6 +41,25 @@ int main() {
             std::cin >> keyword;
             std::ifstream inf("plaintext.txt");
             std::ofstream outf("decrypted.txt");
+            std::cout << "Extracting contents of plaintext.txt into a string..." << std::endl;
+            std::string plaintext((std::istreambuf_iterator<char>(inf)), std::istreambuf_iterator<char>());
+            std::cout << "Encrypting plaintext using the entered keyword..." << std::endl;
+            std::string ciphertext = vigenere::encrypt(keyword, plaintext);
+            std::cout << "Retrieving the keyword from the ciphertext..." << std::endl;
+            std::string key = vigenere::crack(ciphertext);
+            std::cout << "Retrieved keyword: " << key << std::endl;
+            std::cout << "Decrypting the ciphertext using the retrieved keyword..." << std::endl;
+            std::string decrypted = vigenere::decrypt(key, ciphertext);
+            std::cout << "Outputting the decrypted text into decrypted.txt..." << std::endl;
+            outf << decrypted;
+            break;
+        }
+        case 4: {
+            std::cout << "Enter a keyword: ";
+            std::string keyword;
+            std::cin >> keyword;
+            std::ifstream inf("plaintext.txt");
+            std::ofstream outf("decrypted.txt");
             std::cout << "Encrypting plaintext.txt to ciphertext.txt using the entered keyword..." << std::endl;
             vigenere::encrypt(keyword, inf, outf);
             inf.close();
@@ -53,25 +72,6 @@ int main() {
             inf.seekg(0, std::ifstream::beg);
             std::cout << "Decrypting ciphertext.txt to decrypted.txt using the retrieved keyword..." << std::endl;
             vigenere::decrypt(key, inf, outf);
-            break;
-        }
-        case 4: {
-            std::cout << "Enter a keyword: ";
-            std::string keyword;
-            std::cin >> keyword;
-            std::ifstream inf("plaintext.txt");
-            std::ofstream outf("decrypted.txt");
-            std::cout << "Extracting contents of plaintext.txt into a string..." << std::endl;
-            std::string plaintext((std::istreambuf_iterator<char>(inf)), std::istreambuf_iterator<char>());
-            std::cout << "Encrypting plaintext using the entered keyword..." << std::endl;
-            std::string ciphertext = vigenere::encrypt(keyword, plaintext);
-            std::cout << "Retrieving the keyword from the ciphertext..." << std::endl;
-            std::string key = vigenere::crack(ciphertext);
-            std::cout << "Retrieved keyword: " << key << std::endl;
-            std::cout << "Decrypting the ciphertext using the retrieved keyword..." << std::endl;
-            std::string decrypted = vigenere::decrypt(key, ciphertext);
-            std::cout << "Outputting the decrypted text into decrypted.txt..." << std::endl;
-            outf << decrypted;
             break;
         }
     }

@@ -15,12 +15,19 @@
 namespace vigenere {
 
     namespace {
+
+        int charToInt(char c) {
+            return islower(c) ? c - 'a' : c - 'A';
+        }
+
+        char intToChar(int i) {
+            return 'a' + i;
+        }
+
         std::vector<int> getKeyArray(std::string &keyword) {
             std::vector<int> keyArray;
-            for (auto it = keyword.begin(); it < keyword.end(); it++) {
-                keyArray.emplace_back(islower(*it)
-                      ? ((*it - 'a') % ('z' - 'a' + 1))
-                      : ((*it - 'A') % ('Z' - 'A' + 1)));
+            for (char c : keyword) {
+                keyArray.emplace_back(charToInt(c));
             }
             return keyArray;
         }
@@ -40,14 +47,6 @@ namespace vigenere {
                    : (((cipherChar - 'A' + 26 - keyArray[shift % keyArray.size()])
                        % ('Z' - 'A' + 1)) + 'A');
         }
-
-        int charToInt(char c) {
-            return islower(c) ? c - 'a' : c - 'A';
-        }
-
-        char intToChar(int i) {
-            return 'a' + i;
-        }
     }
 
     std::string encrypt(std::string &keyword, std::string &plaintext) {
@@ -59,12 +58,12 @@ namespace vigenere {
 
         // encrypt
         int j = 0;
-        for (auto it = plaintext.begin(); it < plaintext.end(); it++) {
-            if (isalpha(*it)) {
-                ciphertext.push_back(encrypt(*it, keyArray, j));
+        for (char c : plaintext) {
+            if (isalpha(c)) {
+                ciphertext.push_back(encrypt(c, keyArray, j));
                 j++;
             } else {
-                ciphertext.push_back(*it);
+                ciphertext.push_back(c);
             }
         }
 
@@ -100,12 +99,12 @@ namespace vigenere {
 
         // encrypt
         int j = 0;
-        for (auto it = ciphertext.begin(); it < ciphertext.end(); it++) {
-            if (isalpha(*it)) {
-                plaintext.push_back(decrypt(*it, keyArray, j));
+        for (char c : ciphertext) {
+            if (isalpha(c)) {
+                plaintext.push_back(decrypt(c, keyArray, j));
                 j++;
             } else {
-                plaintext.push_back(*it);
+                plaintext.push_back(c);
             }
         }
 
